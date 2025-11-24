@@ -1,0 +1,15 @@
+{
+  "devFiles": [],
+  "ampDevFiles": [],
+  "polyfillFiles": [
+    "static/chunks/node_modules_next_dist_build_polyfills_polyfill-nomodule.js"
+  ],
+  "lowPriorityFiles": [],
+  "rootMainFiles": [
+    "static/chunks/node_modules_next_dist_compiled_@next_react-refresh-utils_dist_68cf05c0._.js",
+    "static/chunks/_a0ff3932._.js",
+    "static/chunks/turbopack-_945b6d02._.js"
+  ],
+  "pages": {},
+  "ampFirstPages": []
+}
