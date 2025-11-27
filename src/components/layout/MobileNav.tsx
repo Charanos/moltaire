@@ -1,37 +1,42 @@
 'use client';
 
 import Link from 'next/link';
-import { Home, Wallet, User, Bell } from 'lucide-react';
+import { Home, Wallet, User, Bell, Users } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
 const navItems = [
-  { title: 'Home', url: '/', icon: Home },
-  { title: 'Wallet', url: '/wallet', icon: Wallet },
-  { title: 'Notifications', url: '/notifications', icon: Bell },
-  { title: 'Profile', url: '/profile', icon: User },
+  { title: 'Home', url: '/dashboard', icon: Home },
+  { title: 'Wallet', url: '/dashboard/wallet', icon: Wallet },
+  { title: 'Groups', url: '/dashboard/groups', icon: Users },
+  { title: 'Profile', url: '/dashboard/profile', icon: User },
 ];
 
 export function MobileNav({ user }: { user: any }) {
   const pathname = usePathname();
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 glass-nav z-50 pb-safe">
       <ul className="flex justify-around items-center h-16">
-        {navItems.map((item) => (
-          <li key={item.title}>
-            <Link
-              href={item.url}
-              className={`
-                flex flex-col items-center justify-center gap-1 text-xs
-                transition-colors hover:text-blue-500
-                ${pathname === item.url ? 'text-blue-500' : 'text-gray-600'}
-              `}
-            >
-              <item.icon className="w-5 h-5" />
-              <span>{item.title}</span>
-            </Link>
-          </li>
-        ))}
+        {navItems.map((item) => {
+          const isActive = pathname === item.url;
+          return (
+            <li key={item.title} className="w-full">
+              <Link
+                href={item.url}
+                className={`
+                  flex flex-col items-center justify-center gap-1 h-full w-full
+                  transition-all duration-200
+                  ${isActive ? 'text-gray-900' : 'text-gray-500 hover:text-gray-700'}
+                `}
+              >
+                <div className={`p-1 rounded-xl transition-all ${isActive ? 'bg-gray-100' : ''}`}>
+                  <item.icon className={`w-5 h-5 ${isActive ? 'stroke-[2.5px]' : 'stroke-[1.5px]'}`} />
+                </div>
+                <span className="text-[10px] font-medium">{item.title}</span>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

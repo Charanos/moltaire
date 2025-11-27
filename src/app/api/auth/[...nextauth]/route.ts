@@ -1,5 +1,5 @@
 import NextAuth from "next-auth"
-import { PrismaAdapter } from "@auth/prisma-adapter"
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import EmailProvider from "next-auth/providers/email"
 import { prisma } from "@/lib/prisma"
 
@@ -19,12 +19,13 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async session({ session, user }: { session: any, user: any }) {
+    async session({ session, user }: any) {
       if (session.user) {
         session.user.id = user.id
         session.user.role = user.role
         session.user.username = user.username
         session.user.email_verified = user.emailVerified !== null
+        session.user.user_level = user.user_level
       }
       return session
     },
@@ -36,5 +37,5 @@ export const authOptions = {
   },
 }
 
-const handler = NextAuth(authOptions as any)
+const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }

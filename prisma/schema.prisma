@@ -7,6 +7,7 @@ generator client {
 
 datasource db {
   provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -39,6 +40,8 @@ model User {
   marketParticipants    MarketParticipant[]
   transactions          Transaction[]
   notifications         UserNotification[]
+  groupMembers          GroupMember[]
+  privateMarketParticipants PrivateMarketParticipant[]
   
   @@map("users")
 }
@@ -52,6 +55,11 @@ model Wallet {
   total_deposits  Float    @default(0)
   total_winnings  Float    @default(0)
   total_losses    Float    @default(0)
+
+  // Rolling 24h limits tracking
+  daily_deposit_total    Float    @default(0)
+  daily_withdrawal_total Float    @default(0)
+  last_reset_date        DateTime @default(now())
   
   version         Int      @default(1) // Optimistic locking
   is_frozen       Boolean  @default(false)
@@ -62,6 +70,84 @@ model Wallet {
   updated_date    DateTime @updatedAt
   
   @@map("wallets")
+}
+
+model Group {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String?
+  avatar_url  String?
+  
+  created_by  String   @db.ObjectId
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  
+  members     GroupMember[]
+  markets     PrivateGroupMarket[]
+  
+  @@map("groups")
+}
+
+model GroupMember {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  group_id  String   @db.ObjectId
+  group     Group    @relation(fields: [group_id], references: [id], onDelete: Cascade)
+  
+  user_id   String   @db.ObjectId
+  user      User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  
+  role      String   @default("member") // "admin", "member"
+  joined_at DateTime @default(now())
+  
+  @@unique([group_id, user_id])
+  @@map("group_members")
+}
+
+model PrivateGroupMarket {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  group_id        String   @db.ObjectId
+  group           Group    @relation(fields: [group_id], references: [id], onDelete: Cascade)
+  
+  title           String
+  description     String?
+  market_type     String   // "winner_takes_all", "odd_one_out"
+  buy_in_amount   Float
+  
+  status          String   @default("active") // "active", "pending_confirmation", "disputed", "settled", "cancelled"
+  
+  created_by      String   @db.ObjectId
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+  
+  // Winner Takes All specific
+  declared_winner_id String?   @db.ObjectId
+  confirmations      Int       @default(0)
+  disagreements      Int       @default(0)
+  
+  participants    PrivateMarketParticipant[]
+  
+  @@map("private_group_markets")
+}
+
+model PrivateMarketParticipant {
+  id              String             @id @default(auto()) @map("_id") @db.ObjectId
+  market_id       String             @db.ObjectId
+  market          PrivateGroupMarket @relation(fields: [market_id], references: [id], onDelete: Cascade)
+  
+  user_id         String             @db.ObjectId
+  user            User               @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  
+  selected_option String?            // For "odd_one_out"
+  has_confirmed   Boolean            @default(false) // For "winner_takes_all" confirmation
+  has_disagreed   Boolean            @default(false)
+  
+  is_winner       Boolean            @default(false)
+  payout_amount   Float              @default(0)
+  
+  joined_at       DateTime           @default(now())
+  
+  @@unique([market_id, user_id])
+  @@map("private_market_participants")
 }
 
 model PublicBetMarket {
