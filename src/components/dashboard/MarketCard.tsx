@@ -32,51 +32,53 @@ export function MarketCard({
   tags,
 }: MarketCardProps) {
   return (
-    <Card 
+    <Card
       onClick={() => console.log(`Navigate to market ${id}`)}
-      className="group relative overflow-hidden border-none bg-white text-black transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] cursor-pointer h-full flex flex-col"
+      className="group relative overflow-hidden border-none bg-white rounded-2xl text-zinc-900 transition-transform duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(15,23,42,0.08)] cursor-pointer h-full flex flex-col"
     >
-      {/* Animated gradient overlay on hover */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-neutral-50 via-transparent to-transparent" />
-      
-      {/* Content Container */}
+      {/* Top muted accent using provided gradient (muted via opacity) */}
+      <div className={`absolute -left-24 -top-20 h-48 w-48 rounded-full blur-3xl ${imageGradient || 'bg-gradient-to-br from-amber-50 to-amber-100'} opacity-20`} />
+
       <div className="relative z-10 flex h-full flex-col">
-        <CardHeader className="p-6 pb-4 space-y-4">
+        <CardHeader className="p-6 pb-4 space-y-3">
           {/* Top row: Category badge and Odds */}
           <div className="flex items-start justify-between gap-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center rounded-lg bg-neutral-100 dark:bg-neutral-800 px-3 py-1.5 text-xs font-semibold text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700">
+            <div className="flex flex-wrap items-center gap-3">
+              <span tabIndex={0} role="button" className="inline-flex items-center rounded-full bg-white/70 px-3 py-1 text-xs font-semibold text-zinc-700 border border-zinc-100 shadow-sm cursor-pointer hover:bg-white hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-amber-100">
                 {category}
               </span>
               {isLive && (
-                <span className="inline-flex items-center gap-1.5 rounded-lg bg-black dark:bg-white px-2.5 py-1 text-[10px] font-semibold text-white dark:text-black uppercase tracking-wide">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white dark:bg-black opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-white dark:bg-black"></span>
+                <span tabIndex={0} role="button" className="inline-flex items-center gap-2 rounded-full bg-white/60 text-red-600 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide cursor-pointer hover:bg-white focus:outline-none focus:ring-2 focus:ring-red-100">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-50"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
                   </span>
                   LIVE
                 </span>
               )}
             </div>
-            <div className="flex-shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gradient-to-br from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 border border-neutral-200 dark:border-neutral-700">
-              <TrendingUp className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400" />
-              <span className="text-sm font-semibold text-black dark:text-white">{odds}</span>
+
+            <div tabIndex={0} role="button" className="flex-shrink-0 flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-br from-zinc-900 to-zinc-800 text-white shadow-md cursor-pointer transform transition-transform duration-150 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-amber-300">
+              <TrendingUp className="w-4 h-4 text-amber-300" />
+              <span className="text-sm font-semibold">{odds}</span>
             </div>
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-semibold tracking-tight leading-snug text-black dark:text-white group-hover:text-neutral-700 dark:group-hover:text-neutral-200 transition-colors line-clamp-2 min-h-[3.5rem]">
+          <h3 className="text-lg md:text-xl font-semibold tracking-tight leading-snug text-zinc-900 group-hover:text-zinc-800 transition-colors line-clamp-2">
             {title}
           </h3>
-          
+
           {/* Tags */}
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-2">
             {tags.map(tag => (
-              <span 
-                key={tag} 
-                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-medium text-neutral-500 dark:text-neutral-400 bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700/50"
+              <span
+                key={tag}
+                tabIndex={0}
+                role="button"
+                className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md text-xs font-medium text-zinc-600 bg-white/60 border border-zinc-100 cursor-pointer hover:bg-white hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-amber-100"
               >
-                <Tag className="w-2.5 h-2.5" />
+                <Tag className="w-3 h-3 text-zinc-400" />
                 {tag}
               </span>
             ))}
@@ -87,12 +89,12 @@ export function MarketCard({
           {/* Pool Progress */}
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">Pool</span>
-              <span className="text-sm font-semibold text-black dark:text-white">{poolProgress}%</span>
+              <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Pool</span>
+              <span className="text-sm font-semibold text-zinc-900">{poolProgress}%</span>
             </div>
-            <div className="relative h-2 w-full rounded-full bg-neutral-100 dark:bg-neutral-800 overflow-hidden">
-              <div 
-                className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-black to-neutral-700 dark:from-white dark:to-neutral-300 transition-all duration-700 group-hover:shadow-lg" 
+            <div className="relative h-2 w-full rounded-full bg-zinc-100 overflow-hidden">
+              <div
+                className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 transition-all duration-700 shadow-sm"
                 style={{ width: `${poolProgress}%` }}
               />
             </div>
@@ -100,23 +102,25 @@ export function MarketCard({
 
           {/* Stats Grid */}
           <div className="grid grid-cols-3 gap-4">
-            <div className="flex flex-col items-center justify-center p-3 rounded-lg bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700/50">
-              <span className="text-[10px] uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-1">Volume</span>
-              <span className="text-base font-mono font-semibold text-black dark:text-white">{volume}</span>
+            <div className="flex flex-col items-center justify-center p-3 rounded-lg bg-white border border-zinc-100 shadow-sm">
+              <span className="text-[10px] uppercase tracking-wider text-zinc-400 mb-1">Volume</span>
+              <span className="text-base font-mono font-semibold text-zinc-900">{volume}</span>
             </div>
-            <div className="flex flex-col items-center justify-center p-3 rounded-lg bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700/50">
-              <span className="text-[10px] uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-1">Users</span>
-              <span className="text-base font-mono font-semibold text-black dark:text-white">{participants}</span>
+            <div className="flex flex-col items-center justify-center p-3 rounded-lg bg-white border border-zinc-100 shadow-sm">
+              <span className="text-[10px] uppercase tracking-wider text-zinc-400 mb-1">Users</span>
+              <span className="text-base font-mono font-semibold text-zinc-900">{participants}</span>
             </div>
-            <div className="flex flex-col items-center justify-center p-3 rounded-lg bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700/50">
-              <span className="text-[10px] uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-1">Ends</span>
-              <span className="text-base font-mono font-semibold text-black dark:text-white">{endingAt}</span>
+            <div className="flex flex-col items-center justify-center p-3 rounded-lg bg-white border border-zinc-100 shadow-sm">
+              <span className="text-[10px] uppercase tracking-wider text-zinc-400 mb-1">Ends</span>
+              <span className="text-base font-mono font-semibold text-zinc-900">{endingAt}</span>
             </div>
           </div>
         </CardContent>
 
         {/* Hover indicator */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-black to-neutral-600 dark:from-white dark:to-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute bottom-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="h-1 w-full bg-gradient-to-r from-amber-400 to-amber-500" />
+        </div>
       </div>
     </Card>
   )

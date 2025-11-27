@@ -2,11 +2,11 @@ import { getServerSession } from "next-auth"
 import { prisma } from "@/lib/prisma"
 import { authOptions } from "../../../../../auth/[...nextauth]/route"
 
-export async function POST(req: Request, { params }: { params: { groupId: string, marketId: string } }) {
+export async function POST(req: Request, { params }: any) {
   const session = await getServerSession(authOptions)
   if (!session) return Response.json({ error: "Unauthorized" }, { status: 401 })
 
-  const { groupId, marketId } = params
+    const { groupId, marketId } = params as { groupId: string, marketId: string }
   const { action, winnerId } = await req.json() // action: "declare_winner", "confirm", "disagree"
 
   const market = await prisma.privateGroupMarket.findUnique({

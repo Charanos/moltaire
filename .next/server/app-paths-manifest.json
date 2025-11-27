@@ -1,0 +1,23 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/admin/stats/route": "app/api/admin/stats/route.js",
+  "/api/admin/users/route": "app/api/admin/users/route.js",
+  "/api/admin/withdrawals/route": "app/api/admin/withdrawals/route.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/api/groups/[groupId]/markets/[marketId]/settle/route": "app/api/groups/[groupId]/markets/[marketId]/settle/route.js",
+  "/api/groups/[groupId]/markets/route": "app/api/groups/[groupId]/markets/route.js",
+  "/api/groups/route": "app/api/groups/route.js",
+  "/api/notifications/route": "app/api/notifications/route.js",
+  "/api/user/profile/route": "app/api/user/profile/route.js",
+  "/api/wallet/deposit/route": "app/api/wallet/deposit/route.js",
+  "/api/wallet/withdraw/route": "app/api/wallet/withdraw/route.js",
+  "/dashboard/admin/page": "app/dashboard/admin/page.js",
+  "/dashboard/groups/[id]/page": "app/dashboard/groups/[id]/page.js",
+  "/dashboard/groups/page": "app/dashboard/groups/page.js",
+  "/dashboard/notifications/page": "app/dashboard/notifications/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/profile/page": "app/dashboard/profile/page.js",
+  "/dashboard/wallet/page": "app/dashboard/wallet/page.js",
+  "/page": "app/page.js"
+}

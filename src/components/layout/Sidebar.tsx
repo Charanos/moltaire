@@ -16,11 +16,12 @@ const navItems = [
 ]
 
 interface SidebarProps {
-  collapsed: boolean
-  onToggle: () => void
+  collapsed?: boolean
+  onToggle?: () => void
+  user?: any
 }
 
-export function Sidebar({ collapsed, onToggle }: SidebarProps) {
+export function Sidebar({ collapsed = false, onToggle = () => {}, user }: SidebarProps) {
   const pathname = usePathname()
   const { data: session } = useSession()
 

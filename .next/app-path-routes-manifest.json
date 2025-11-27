@@ -1,0 +1,23 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/admin/stats/route": "/api/admin/stats",
+  "/api/admin/users/route": "/api/admin/users",
+  "/api/admin/withdrawals/route": "/api/admin/withdrawals",
+  "/api/auth/[...nextauth]/route": "/api/auth/[...nextauth]",
+  "/api/groups/[groupId]/markets/[marketId]/settle/route": "/api/groups/[groupId]/markets/[marketId]/settle",
+  "/api/groups/[groupId]/markets/route": "/api/groups/[groupId]/markets",
+  "/api/groups/route": "/api/groups",
+  "/api/notifications/route": "/api/notifications",
+  "/api/user/profile/route": "/api/user/profile",
+  "/api/wallet/deposit/route": "/api/wallet/deposit",
+  "/api/wallet/withdraw/route": "/api/wallet/withdraw",
+  "/dashboard/admin/page": "/dashboard/admin",
+  "/dashboard/groups/[id]/page": "/dashboard/groups/[id]",
+  "/dashboard/groups/page": "/dashboard/groups",
+  "/dashboard/notifications/page": "/dashboard/notifications",
+  "/dashboard/page": "/dashboard",
+  "/dashboard/profile/page": "/dashboard/profile",
+  "/dashboard/wallet/page": "/dashboard/wallet",
+  "/page": "/"
+}

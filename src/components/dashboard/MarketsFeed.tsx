@@ -93,19 +93,20 @@ export function MarketsFeed() {
   return (
     <div className="space-y-6">
       <div className="border-b border-neutral-200 dark:border-neutral-800">
-        <nav className="-mb-px flex space-x-8 overflow-x-auto" aria-label="Tabs">
+        <nav className="-mb-px flex space-x-6 overflow-x-auto" aria-label="Tabs">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={cn(
-                "whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium transition-colors",
+                "whitespace-nowrap border-b-2 py-3 px-3 text-sm font-medium transition-all rounded-t-md focus:outline-none",
                 activeTab === tab.id
-                  ? "border-black text-black dark:border-white dark:text-white"
-                  : "border-transparent text-neutral-500 hover:border-neutral-300 hover:text-black dark:text-neutral-400 dark:hover:text-white"
+                  ? "border-amber-400 text-zinc-900 bg-white/60 shadow-sm"
+                  : "border-transparent text-neutral-500 hover:border-neutral-200 hover:text-zinc-900"
               )}
+              aria-current={activeTab === tab.id ? 'page' : undefined}
             >
-              {tab.label}
+              <span className="cursor-pointer select-none">{tab.label}</span>
             </button>
           ))}
         </nav>

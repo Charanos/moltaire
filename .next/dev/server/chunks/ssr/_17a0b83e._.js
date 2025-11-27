@@ -102,10 +102,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 function MarketCard({ id, title, category, volume, participants, endingAt, isLive, imageGradient, odds, poolProgress, tags }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
         onClick: ()=>console.log(`Navigate to market ${id}`),
-        className: "group relative overflow-hidden border-none bg-white text-black transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] cursor-pointer h-full flex flex-col",
+        className: "group relative overflow-hidden border-none bg-white rounded-2xl text-zinc-900 transition-transform duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(15,23,42,0.08)] cursor-pointer h-full flex flex-col",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-neutral-50 via-transparent to-transparent"
+                className: `absolute -left-24 -top-20 h-48 w-48 rounded-full blur-3xl ${imageGradient || 'bg-gradient-to-br from-amber-50 to-amber-100'} opacity-20`
             }, void 0, false, {
                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
                 lineNumber: 40,
@@ -115,73 +115,79 @@ function MarketCard({ id, title, category, volume, participants, endingAt, isLiv
                 className: "relative z-10 flex h-full flex-col",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardHeader"], {
-                        className: "p-6 pb-4 space-y-4",
+                        className: "p-6 pb-4 space-y-3",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "flex items-start justify-between gap-2",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex flex-wrap items-center gap-2",
+                                        className: "flex flex-wrap items-center gap-3",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "inline-flex items-center rounded-lg bg-neutral-100 dark:bg-neutral-800 px-3 py-1.5 text-xs font-semibold text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700",
+                                                tabIndex: 0,
+                                                role: "button",
+                                                className: "inline-flex items-center rounded-full bg-white/70 px-3 py-1 text-xs font-semibold text-zinc-700 border border-zinc-100 shadow-sm cursor-pointer hover:bg-white hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-amber-100",
                                                 children: category
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                                lineNumber: 48,
+                                                lineNumber: 47,
                                                 columnNumber: 15
                                             }, this),
                                             isLive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "inline-flex items-center gap-1.5 rounded-lg bg-black dark:bg-white px-2.5 py-1 text-[10px] font-semibold text-white dark:text-black uppercase tracking-wide",
+                                                tabIndex: 0,
+                                                role: "button",
+                                                className: "inline-flex items-center gap-2 rounded-full bg-white/60 text-red-600 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide cursor-pointer hover:bg-white focus:outline-none focus:ring-2 focus:ring-red-100",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "relative flex h-2 w-2",
+                                                        className: "relative flex h-2.5 w-2.5",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-white dark:bg-black opacity-75"
+                                                                className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-50"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                                                lineNumber: 54,
+                                                                lineNumber: 53,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "relative inline-flex rounded-full h-2 w-2 bg-white dark:bg-black"
+                                                                className: "relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                                                lineNumber: 55,
+                                                                lineNumber: 54,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                                        lineNumber: 53,
+                                                        lineNumber: 52,
                                                         columnNumber: 19
                                                     }, this),
                                                     "LIVE"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                                lineNumber: 52,
+                                                lineNumber: 51,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                        lineNumber: 47,
+                                        lineNumber: 46,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex-shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gradient-to-br from-neutral-100 to-neutral-50 dark:from-neutral-800 dark:to-neutral-900 border border-neutral-200 dark:border-neutral-700",
+                                        tabIndex: 0,
+                                        role: "button",
+                                        className: "flex-shrink-0 flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-br from-zinc-900 to-zinc-800 text-white shadow-md cursor-pointer transform transition-transform duration-150 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-amber-300",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
-                                                className: "w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400"
+                                                className: "w-4 h-4 text-amber-300"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
                                                 lineNumber: 62,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-sm font-semibold text-black dark:text-white",
+                                                className: "text-sm font-semibold",
                                                 children: odds
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
@@ -197,11 +203,11 @@ function MarketCard({ id, title, category, volume, participants, endingAt, isLiv
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                lineNumber: 46,
+                                lineNumber: 45,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "text-lg font-semibold tracking-tight leading-snug text-black dark:text-white group-hover:text-neutral-700 dark:group-hover:text-neutral-200 transition-colors line-clamp-2 min-h-[3.5rem]",
+                                className: "text-lg md:text-xl font-semibold tracking-tight leading-snug text-zinc-900 group-hover:text-zinc-800 transition-colors line-clamp-2",
                                 children: title
                             }, void 0, false, {
                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
@@ -209,15 +215,17 @@ function MarketCard({ id, title, category, volume, participants, endingAt, isLiv
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex flex-wrap gap-1.5",
+                                className: "flex flex-wrap gap-2",
                                 children: tags.map((tag)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-medium text-neutral-500 dark:text-neutral-400 bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700/50",
+                                        tabIndex: 0,
+                                        role: "button",
+                                        className: "inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md text-xs font-medium text-zinc-600 bg-white/60 border border-zinc-100 cursor-pointer hover:bg-white hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-amber-100",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$tag$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Tag$3e$__["Tag"], {
-                                                className: "w-2.5 h-2.5"
+                                                className: "w-3 h-3 text-zinc-400"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                                lineNumber: 79,
+                                                lineNumber: 81,
                                                 columnNumber: 17
                                             }, this),
                                             tag
@@ -235,7 +243,7 @@ function MarketCard({ id, title, category, volume, participants, endingAt, isLiv
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                        lineNumber: 44,
+                        lineNumber: 43,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -248,154 +256,161 @@ function MarketCard({ id, title, category, volume, participants, endingAt, isLiv
                                         className: "flex justify-between items-center",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider",
+                                                className: "text-xs font-medium text-zinc-500 uppercase tracking-wider",
                                                 children: "Pool"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                                lineNumber: 90,
+                                                lineNumber: 92,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-sm font-semibold text-black dark:text-white",
+                                                className: "text-sm font-semibold text-zinc-900",
                                                 children: [
                                                     poolProgress,
                                                     "%"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                                lineNumber: 91,
+                                                lineNumber: 93,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                        lineNumber: 89,
+                                        lineNumber: 91,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "relative h-2 w-full rounded-full bg-neutral-100 dark:bg-neutral-800 overflow-hidden",
+                                        className: "relative h-2 w-full rounded-full bg-zinc-100 overflow-hidden",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-black to-neutral-700 dark:from-white dark:to-neutral-300 transition-all duration-700 group-hover:shadow-lg",
+                                            className: "absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 transition-all duration-700 shadow-sm",
                                             style: {
                                                 width: `${poolProgress}%`
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                            lineNumber: 94,
+                                            lineNumber: 96,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                        lineNumber: 93,
+                                        lineNumber: 95,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                lineNumber: 88,
+                                lineNumber: 90,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "grid grid-cols-3 gap-4",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex flex-col items-center justify-center p-3 rounded-lg bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700/50",
+                                        className: "flex flex-col items-center justify-center p-3 rounded-lg bg-white border border-zinc-100 shadow-sm",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[10px] uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-1",
+                                                className: "text-[10px] uppercase tracking-wider text-zinc-400 mb-1",
                                                 children: "Volume"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                                lineNumber: 104,
+                                                lineNumber: 106,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-base font-mono font-semibold text-black dark:text-white",
+                                                className: "text-base font-mono font-semibold text-zinc-900",
                                                 children: volume
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                                lineNumber: 105,
+                                                lineNumber: 107,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                        lineNumber: 103,
+                                        lineNumber: 105,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex flex-col items-center justify-center p-3 rounded-lg bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700/50",
+                                        className: "flex flex-col items-center justify-center p-3 rounded-lg bg-white border border-zinc-100 shadow-sm",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[10px] uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-1",
+                                                className: "text-[10px] uppercase tracking-wider text-zinc-400 mb-1",
                                                 children: "Users"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                                lineNumber: 108,
+                                                lineNumber: 110,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-base font-mono font-semibold text-black dark:text-white",
+                                                className: "text-base font-mono font-semibold text-zinc-900",
                                                 children: participants
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                                lineNumber: 109,
+                                                lineNumber: 111,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                        lineNumber: 107,
+                                        lineNumber: 109,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex flex-col items-center justify-center p-3 rounded-lg bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700/50",
+                                        className: "flex flex-col items-center justify-center p-3 rounded-lg bg-white border border-zinc-100 shadow-sm",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[10px] uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-1",
+                                                className: "text-[10px] uppercase tracking-wider text-zinc-400 mb-1",
                                                 children: "Ends"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                                lineNumber: 112,
+                                                lineNumber: 114,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-base font-mono font-semibold text-black dark:text-white",
+                                                className: "text-base font-mono font-semibold text-zinc-900",
                                                 children: endingAt
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                                lineNumber: 113,
+                                                lineNumber: 115,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                        lineNumber: 111,
+                                        lineNumber: 113,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                                lineNumber: 102,
+                                lineNumber: 104,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                        lineNumber: 86,
+                        lineNumber: 88,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-black to-neutral-600 dark:from-white dark:to-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className: "absolute bottom-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "h-1 w-full bg-gradient-to-r from-amber-400 to-amber-500"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/dashboard/MarketCard.tsx",
+                            lineNumber: 122,
+                            columnNumber: 11
+                        }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                        lineNumber: 119,
+                        lineNumber: 121,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/dashboard/MarketCard.tsx",
-                lineNumber: 43,
+                lineNumber: 42,
                 columnNumber: 7
             }, this)
         ]
@@ -532,12 +547,20 @@ function MarketsFeed() {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "border-b border-neutral-200 dark:border-neutral-800",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
-                    className: "-mb-px flex space-x-8 overflow-x-auto",
+                    className: "-mb-px flex space-x-6 overflow-x-auto",
                     "aria-label": "Tabs",
                     children: tabs.map((tab)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             onClick: ()=>setActiveTab(tab.id),
-                            className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])("whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium transition-colors", activeTab === tab.id ? "border-black text-black dark:border-white dark:text-white" : "border-transparent text-neutral-500 hover:border-neutral-300 hover:text-black dark:text-neutral-400 dark:hover:text-white"),
-                            children: tab.label
+                            className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])("whitespace-nowrap border-b-2 py-3 px-3 text-sm font-medium transition-all rounded-t-md focus:outline-none", activeTab === tab.id ? "border-amber-400 text-zinc-900 bg-white/60 shadow-sm" : "border-transparent text-neutral-500 hover:border-neutral-200 hover:text-zinc-900"),
+                            "aria-current": activeTab === tab.id ? 'page' : undefined,
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "cursor-pointer select-none",
+                                children: tab.label
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/dashboard/MarketsFeed.tsx",
+                                lineNumber: 109,
+                                columnNumber: 15
+                            }, this)
                         }, tab.id, false, {
                             fileName: "[project]/src/components/dashboard/MarketsFeed.tsx",
                             lineNumber: 98,
@@ -559,12 +582,12 @@ function MarketsFeed() {
                         ...market
                     }, market.id, false, {
                         fileName: "[project]/src/components/dashboard/MarketsFeed.tsx",
-                        lineNumber: 116,
+                        lineNumber: 117,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/dashboard/MarketsFeed.tsx",
-                lineNumber: 114,
+                lineNumber: 115,
                 columnNumber: 7
             }, this),
             filteredMarkets.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -575,7 +598,7 @@ function MarketsFeed() {
                         children: "No markets found."
                     }, void 0, false, {
                         fileName: "[project]/src/components/dashboard/MarketsFeed.tsx",
-                        lineNumber: 122,
+                        lineNumber: 123,
                         columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -583,13 +606,13 @@ function MarketsFeed() {
                         children: "Try selecting a different category."
                     }, void 0, false, {
                         fileName: "[project]/src/components/dashboard/MarketsFeed.tsx",
-                        lineNumber: 123,
+                        lineNumber: 124,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/dashboard/MarketsFeed.tsx",
-                lineNumber: 121,
+                lineNumber: 122,
                 columnNumber: 9
             }, this)
         ]

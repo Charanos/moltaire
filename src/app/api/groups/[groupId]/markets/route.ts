@@ -2,11 +2,11 @@ import { getServerSession } from "next-auth"
 import { prisma } from "@/lib/prisma"
 import { authOptions } from "../../../auth/[...nextauth]/route"
 
-export async function POST(req: Request, { params }: { params: { groupId: string } }) {
+export async function POST(req: Request, { params }: any) {
   const session = await getServerSession(authOptions)
   if (!session) return Response.json({ error: "Unauthorized" }, { status: 401 })
 
-  const { groupId } = params
+  const { groupId } = params as { groupId: string }
   const { title, description, market_type, buy_in_amount } = await req.json()
 
   // Verify membership
