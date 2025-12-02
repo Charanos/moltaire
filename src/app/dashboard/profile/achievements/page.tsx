@@ -1,0 +1,219 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowLeft, Trophy, Calendar, Lock, Unlock, Zap, Gift, Sparkles, Star, Medal, AlertCircle, Clock, Users, DollarSign, Target } from "lucide-react";
+import Link from "next/link";
+import { DashboardCard } from "@/components/dashboard/DashboardCard";
+import { mockAchievements } from "@/lib/mockData";
+import { Button } from "@/components/ui/button";
+
+export default function AchievementsPage() {
+  const [activeTab, setActiveTab] = useState("all");
+
+  const getCategoryIcon = (category: string) => {
+    switch (category.toLowerCase()) {
+      case 'beginner': return <Star className="w-4 h-4" />;
+      case 'time based': return <Clock className="w-4 h-4" />;
+      case 'bad luck': return <AlertCircle className="w-4 h-4" />;
+      case 'wheel': return <Sparkles className="w-4 h-4" />;
+      case 'performance': return <Trophy className="w-4 h-4" />;
+      case 'prestige': return <Medal className="w-4 h-4" />;
+      case 'risk': return <Zap className="w-4 h-4" />;
+      case 'social': return <Users className="w-4 h-4" />;
+      default: return <Target className="w-4 h-4" />;
+    }
+  };
+
+  return (
+    <div className="space-y-12 pb-16">
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="space-y-4"
+      >
+        <Link 
+          href="/dashboard/profile" 
+          className="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 hover:text-black mb-4 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back to Profile
+        </Link>
+        <h1 className="text-3xl font-semibold tracking-tight text-black">
+          Achievements & Rewards
+        </h1>
+        <p className="mt-2 text-neutral-600">View badges, progress, and bonuses</p>
+      </motion.div>
+
+      {/* Stats Row */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <DashboardCard className="p-6">
+          <div className="flex flex-col items-center justify-center text-center space-y-2">
+            <span className="text-3xl font-semibold font-mono text-black leading-none">{mockAchievements.stats.balance}</span>
+            <span className="text-[11px] font-medium text-neutral-400 uppercase tracking-widest">MP Balance</span>
+          </div>
+        </DashboardCard>
+        <DashboardCard className="p-6">
+          <div className="flex flex-col items-center justify-center text-center space-y-2">
+            <span className="text-3xl font-semibold font-mono text-black leading-none">{mockAchievements.stats.unlocked}/{mockAchievements.stats.total}</span>
+            <span className="text-[11px] font-medium text-neutral-400 uppercase tracking-widest">Unlocked</span>
+          </div>
+        </DashboardCard>
+        <DashboardCard className="p-6">
+          <div className="flex flex-col items-center justify-center text-center space-y-2">
+            <span className="text-3xl font-semibold font-mono text-black leading-none">{mockAchievements.stats.earned}</span>
+            <span className="text-[11px] font-medium text-neutral-400 uppercase tracking-widest">MP Earned</span>
+          </div>
+        </DashboardCard>
+        <DashboardCard className="p-6">
+          <div className="flex flex-col items-center justify-center text-center space-y-2">
+            <span className="text-3xl font-semibold font-mono text-black leading-none">{mockAchievements.stats.streak}</span>
+            <span className="text-[11px] font-medium text-neutral-400 uppercase tracking-widest">Day Streak</span>
+          </div>
+        </DashboardCard>
+      </div>
+
+      {/* Daily Bonus */}
+      <DashboardCard className="p-10">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex-1 w-full grid grid-cols-7 gap-2 md:gap-4">
+            {mockAchievements.dailyBonus.map((day) => (
+              <div key={day.day} className="flex flex-col items-center gap-2">
+                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-sm font-semibold border-2 transition-all
+                  ${day.claimed 
+                    ? "bg-amber-100 border-amber-200 text-amber-700" 
+                    : day.day === 1 // Assuming day 1 is today for visual similarity to screenshot
+                      ? "bg-amber-500 border-amber-500 text-white shadow-lg scale-110"
+                      : "bg-neutral-50 border-neutral-100 text-neutral-400"
+                  }`}
+                >
+                  {day.claimed ? <CheckIcon /> : day.day}
+                </div>
+                <span className={`text-xs font-semibold ${day.claimed || day.day === 1 ? "text-amber-600" : "text-neutral-400"}`}>
+                  +{day.reward}
+                </span>
+              </div>
+            ))}
+          </div>
+          <Button className="w-full md:w-auto bg-amber-600 hover:bg-amber-700 text-white font-semibold px-8 py-6 rounded-xl shadow-lg shadow-amber-200 cursor-pointer">
+            <Gift className="w-5 h-5 mr-2" />
+            Claim Daily Bonus
+          </Button>
+        </div>
+      </DashboardCard>
+
+      {/* Spin the Wheel Banner */}
+      <Button className="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white font-semibold py-6 text-lg rounded-2xl shadow-lg shadow-amber-200/50 cursor-pointer flex items-center justify-center gap-2">
+        <Sparkles className="w-5 h-5" />
+        Spin the Wheel
+      </Button>
+
+      {/* In Progress */}
+      <div className="space-y-6">
+        <div className="flex items-center gap-2 text-neutral-900 font-semibold text-lg">
+          <Target className="w-5 h-5" />
+          <h3>In Progress</h3>
+        </div>
+        <div className="grid gap-5">
+          {mockAchievements.inProgress.map((item) => (
+            <DashboardCard key={item.title} className="p-6">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start gap-4">
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-black text-base leading-tight">{item.title}</h4>
+                    <p className="text-sm text-neutral-500 mt-2 leading-relaxed">{item.description}</p>
+                  </div>
+                  <span className="text-green-600 font-semibold font-mono text-sm whitespace-nowrap">+{item.reward} MP</span>
+                </div>
+                <div className="space-y-2">
+                  <div className="h-2 w-full bg-neutral-100 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-black rounded-full transition-all duration-500"
+                      style={{ width: `${item.progress}%` }}
+                    />
+                  </div>
+                  <div className="text-xs font-medium text-neutral-400">{item.progress}%</div>
+                </div>
+              </div>
+            </DashboardCard>
+          ))}
+        </div>
+      </div>
+
+      {/* Unlocked */}
+      <div className="space-y-6">
+        <div className="flex items-center gap-2 text-neutral-900 font-semibold text-lg">
+          <Trophy className="w-5 h-5" />
+          <h3>Unlocked ({mockAchievements.unlocked.length})</h3>
+        </div>
+        <div className="grid md:grid-cols-2 gap-5">
+          {mockAchievements.unlocked.map((item) => (
+            <DashboardCard key={item.title} className="p-6 border-amber-200 bg-amber-50/30">
+              <div className="flex flex-col items-center text-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-600">
+                  {getCategoryIcon(item.category)}
+                </div>
+                <div>
+                  <h4 className="font-semibold text-black text-base">{item.title}</h4>
+                  <p className="text-xs text-neutral-500 mt-1">{item.description}</p>
+                </div>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="bg-white text-black text-xs font-semibold px-2 py-1 rounded-md shadow-sm">+{item.reward} MP</span>
+                  <span className="text-xs font-medium text-neutral-400">{item.category}</span>
+                </div>
+                <span className="text-[10px] text-neutral-400 font-medium">Unlocked {item.date}</span>
+              </div>
+            </DashboardCard>
+          ))}
+        </div>
+      </div>
+
+      {/* Locked */}
+      <div className="space-y-6">
+        <div className="flex items-center gap-2 text-neutral-900 font-semibold text-lg">
+          <Lock className="w-5 h-5" />
+          <h3>Locked ({mockAchievements.locked.length})</h3>
+        </div>
+        <div className="grid md:grid-cols-3 gap-5">
+          {mockAchievements.locked.map((item) => (
+            <DashboardCard key={item.title} className="p-6 opacity-60 hover:opacity-100 transition-opacity">
+              <div className="flex flex-col items-center text-center">
+                <div className="w-14 h-14 rounded-full bg-neutral-50 flex items-center justify-center text-neutral-400 mb-4">
+                  {getCategoryIcon(item.category)}
+                </div>
+                <div className="mb-4 min-h-[60px] flex flex-col justify-start">
+                  <h4 className="font-semibold text-neutral-700 text-base leading-tight">{item.title}</h4>
+                  <p className="text-xs text-neutral-500 mt-2 leading-relaxed line-clamp-2">{item.description}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="bg-neutral-100 text-neutral-600 text-xs font-semibold px-3 py-1.5 rounded-lg">+{item.reward} MP</span>
+                  <span className="text-xs font-medium text-neutral-400">{item.category}</span>
+                </div>
+              </div>
+            </DashboardCard>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="w-4 h-4"
+    >
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  );
+}

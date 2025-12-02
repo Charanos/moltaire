@@ -1,0 +1,342 @@
+"use client"
+
+import { useState } from "react"
+import { motion } from "framer-motion"
+import { ArrowLeft, RefreshCw, Play, Activity, CheckCircle, XCircle, Clock, TrendingUp, Code, Info } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { DashboardCard } from "@/components/dashboard/DashboardCard"
+
+// Mock Data
+const mockCronJobs = [
+  {
+    id: 1,
+    name: "Market Settlement",
+    schedule: "*/15 * * * *",
+    lastRun: "2 minutes ago",
+    nextRun: "in 13 minutes",
+    status: "success",
+    duration: "1.2s",
+    description: "Settles completed markets and distributes rewards"
+  },
+  {
+    id: 2,
+    name: "User Notifications",
+    schedule: "*/5 * * * *",
+    lastRun: "4 minutes ago",
+    nextRun: "in 1 minute",
+    status: "success",
+    duration: "0.8s",
+    description: "Sends pending notifications to users"
+  },
+  {
+    id: 3,
+    name: "Market Cleanup",
+    schedule: "0 */6 * * *",
+    lastRun: "3 hours ago",
+    nextRun: "in 3 hours",
+    status: "running",
+    duration: "—",
+    description: "Archives old markets and cleans up expired data"
+  }
+]
+
+const mockExecutionHistory = [
+  { id: 1, job: "Market Settlement", timestamp: "Dec 2, 2025 3:01 PM", status: "success", duration: "1.2s" },
+  { id: 2, job: "User Notifications", timestamp: "Dec 2, 2025 2:59 PM", status: "success", duration: "0.7s" },
+  { id: 3, job: "Market Settlement", timestamp: "Dec 2, 2025 2:46 PM", status: "success", duration: "1.1s" },
+  { id: 4, job: "User Notifications", timestamp: "Dec 2, 2025 2:54 PM", status: "failed", duration: "0.3s" },
+  { id: 5, job: "Market Cleanup", timestamp: "Dec 2, 2025 12:00 PM", status: "success", duration: "2.5s" }
+]
+
+export default function CronMonitorPage() {
+  const router = useRouter()
+  const [isRefreshing, setIsRefreshing] = useState(false)
+
+  const handleRefresh = () => {
+    setIsRefreshing(true)
+    setTimeout(() => setIsRefreshing(false), 1000)
+  }
+
+  const handleTriggerNow = () => {
+    console.log("Triggering cron jobs manually...")
+  }
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "success":
+        return "text-green-600 bg-green-50 border-green-200"
+      case "failed":
+        return "text-red-600 bg-red-50 border-red-200"
+      case "running":
+        return "text-blue-600 bg-blue-50 border-blue-200"
+      default:
+        return "text-neutral-600 bg-neutral-50 border-neutral-200"
+    }
+  }
+
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case "success":
+        return <CheckCircle className="w-4 h-4" />
+      case "failed":
+        return <XCircle className="w-4 h-4" />
+      case "running":
+        return <Activity className="w-4 h-4 animate-pulse" />
+      default:
+        return <Clock className="w-4 h-4" />
+    }
+  }
+
+  const totalRuns = 145
+  const successfulRuns = 142
+  const failedRuns = 3
+  const avgDuration = "1.2s"
+
+  return (
+    <div className="min-h-screen pb-12">
+      <div className="max-w-full mx-auto px-6 pb-8">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-center justify-between mb-8"
+        >
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={() => router.back()}
+              className="w-10 h-10 rounded-lg border border-neutral-200 bg-white hover:bg-neutral-50 transition-colors flex items-center justify-center cursor-pointer"
+            >
+              <ArrowLeft className="w-5 h-5 text-neutral-600" />
+            </button>
+            <div>
+              <h1 className="text-2xl font-semibold text-neutral-900">Cron Job Monitor</h1>
+              <p className="text-sm text-neutral-500 mt-0.5">Automated task execution and health monitoring</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button 
+              onClick={handleRefresh}
+              className="px-4 py-2.5 text-sm font-medium text-neutral-700 bg-white border border-neutral-200 rounded-lg hover:bg-neutral-50 flex items-center gap-2 cursor-pointer transition-all"
+            >
+              <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+              Refresh
+            </button>
+            <button 
+              onClick={handleTriggerNow}
+              className="px-4 py-2.5 text-sm font-medium text-white bg-neutral-900 hover:bg-neutral-800 rounded-lg flex items-center gap-2 cursor-pointer transition-all"
+            >
+              <Play className="w-4 h-4" />
+              Trigger Now
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Visual Separator - Overview */}
+        <div className="flex items-center gap-4 mb-10">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent"></div>
+          <h2 className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Overview (24h)</h2>
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent"></div>
+        </div>
+
+        {/* Stats Overview */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.05 }}
+          className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10"
+        >
+          <DashboardCard className="p-5">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-neutral-500">Total Runs (24h)</span>
+              <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
+                <Activity className="w-4 h-4 text-blue-600" />
+              </div>
+            </div>
+            <p className="text-2xl font-semibold text-neutral-900 font-mono">{totalRuns}</p>
+          </DashboardCard>
+
+          <DashboardCard className="p-5">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-neutral-500">Successful</span>
+              <div className="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+              </div>
+            </div>
+            <p className="text-2xl font-semibold text-neutral-900 font-mono">{successfulRuns}</p>
+          </DashboardCard>
+
+          <DashboardCard className="p-5">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-neutral-500">Failed</span>
+              <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center">
+                <XCircle className="w-4 h-4 text-red-600" />
+              </div>
+            </div>
+            <p className="text-2xl font-semibold text-neutral-900 font-mono">{failedRuns}</p>
+          </DashboardCard>
+
+          <DashboardCard className="p-5">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-neutral-500">Avg Duration</span>
+              <div className="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center">
+                <Clock className="w-4 h-4 text-purple-600" />
+              </div>
+            </div>
+            <p className="text-2xl font-semibold text-neutral-900 font-mono">{avgDuration}</p>
+          </DashboardCard>
+        </motion.div>
+
+        {/* Visual Separator - Current Jobs */}
+        <div className="flex items-center gap-4 mb-10">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent"></div>
+          <h2 className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Current Job Status</h2>
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent"></div>
+        </div>
+
+        {/* Current Jobs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="mb-10"
+        >
+          <div className="grid gap-4">
+            {mockCronJobs.map((job, index) => (
+              <DashboardCard key={job.id} className="p-6">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-base font-semibold text-neutral-900">{job.name}</h3>
+                      <span className={`px-2.5 py-1 text-xs font-semibold rounded-full border capitalize ${getStatusColor(job.status)} flex items-center gap-1.5`}>
+                        {getStatusIcon(job.status)}
+                        {job.status}
+                      </span>
+                    </div>
+                    <p className="text-sm text-neutral-600 mb-3">{job.description}</p>
+                    
+                    <div className="flex items-center gap-6 text-xs">
+                      <div className="flex items-center gap-2">
+                        <Code className="w-3.5 h-3.5 text-neutral-400" />
+                        <span className="text-neutral-500 font-medium">Schedule:</span>
+                        <span className="font-mono text-neutral-700 bg-neutral-100 px-2 py-0.5 rounded">{job.schedule}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-3.5 h-3.5 text-neutral-400" />
+                        <span className="text-neutral-500 font-medium">Last run:</span>
+                        <span className="font-mono text-neutral-700">{job.lastRun}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <TrendingUp className="w-3.5 h-3.5 text-neutral-400" />
+                        <span className="text-neutral-500 font-medium">Next run:</span>
+                        <span className="font-mono text-neutral-700">{job.nextRun}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-neutral-500 font-medium">Duration:</span>
+                        <span className="font-mono text-neutral-700 font-semibold">{job.duration}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </DashboardCard>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Visual Separator - Execution History */}
+        <div className="flex items-center gap-4 mb-10">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent"></div>
+          <h2 className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Execution History</h2>
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent"></div>
+        </div>
+
+        {/* Execution History */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="mb-10"
+        >
+          <DashboardCard className="p-0 overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-neutral-50 border-b border-neutral-200">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-600 uppercase tracking-wider">Job Name</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-600 uppercase tracking-wider">Timestamp</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-600 uppercase tracking-wider">Status</th>
+                    <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-600 uppercase tracking-wider">Duration</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-neutral-100">
+                  {mockExecutionHistory.map((execution) => (
+                    <tr key={execution.id} className="hover:bg-neutral-50 transition-colors">
+                      <td className="px-6 py-4 text-sm font-medium text-neutral-900">{execution.job}</td>
+                      <td className="px-6 py-4 text-sm font-mono text-neutral-600">{execution.timestamp}</td>
+                      <td className="px-6 py-4">
+                        <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full border capitalize ${getStatusColor(execution.status)}`}>
+                          {getStatusIcon(execution.status)}
+                          {execution.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-sm font-mono text-neutral-700 font-semibold">{execution.duration}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </DashboardCard>
+        </motion.div>
+
+        {/* Setup Instructions */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <DashboardCard className="p-6 bg-blue-50/30 border-blue-100">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <Info className="w-4 h-4 text-blue-600" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-base font-semibold text-neutral-900 mb-2">Cron Setup Instructions</h3>
+                <p className="text-sm text-neutral-600 mb-4">
+                  To ensure automated tasks run consistently, set up a cron trigger:
+                </p>
+                
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-sm font-semibold text-neutral-900 mb-2">Option 1: Vercel Cron (Recommended)</p>
+                    <p className="text-xs text-neutral-600 mb-2">Add to vercel.json:</p>
+                    <div className="bg-neutral-900 rounded-lg p-4 overflow-x-auto">
+                      <pre className="text-xs text-neutral-100 font-mono">
+{`{
+  "crons": [{
+    "path": "/functions/cronOrchestrator",
+    "schedule": "*/5 * * * *"
+  }]
+}`}
+                      </pre>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-sm font-semibold text-neutral-900 mb-2">Option 2: External Service</p>
+                    <p className="text-xs text-neutral-600 mb-2">Use a service like cron-job.org to ping:</p>
+                    <div className="bg-neutral-900 rounded-lg p-4">
+                      <pre className="text-xs text-neutral-100 font-mono">
+{`POST https://yourdomain.com/api/cron
+Authorization: Bearer YOUR_SECRET_TOKEN`}
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </DashboardCard>
+        </motion.div>
+      </div>
+    </div>
+  )
+}
