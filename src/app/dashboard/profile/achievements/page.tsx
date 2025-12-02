@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Trophy, Calendar, Lock, Unlock, Zap, Gift, Sparkles, Star, Medal, AlertCircle, Clock, Users, DollarSign, Target } from "lucide-react";
 import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
 import { DashboardCard } from "@/components/dashboard/DashboardCard";
 import { mockAchievements } from "@/lib/mockData";
 import { Button } from "@/components/ui/button";
@@ -48,30 +49,69 @@ export default function AchievementsPage() {
 
       {/* Stats Row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <DashboardCard className="p-6">
-          <div className="flex flex-col items-center justify-center text-center space-y-2">
-            <span className="text-3xl font-semibold font-mono text-black leading-none">{mockAchievements.stats.balance}</span>
-            <span className="text-[11px] font-medium text-neutral-400 uppercase tracking-widest">MP Balance</span>
-          </div>
-        </DashboardCard>
-        <DashboardCard className="p-6">
-          <div className="flex flex-col items-center justify-center text-center space-y-2">
-            <span className="text-3xl font-semibold font-mono text-black leading-none">{mockAchievements.stats.unlocked}/{mockAchievements.stats.total}</span>
-            <span className="text-[11px] font-medium text-neutral-400 uppercase tracking-widest">Unlocked</span>
-          </div>
-        </DashboardCard>
-        <DashboardCard className="p-6">
-          <div className="flex flex-col items-center justify-center text-center space-y-2">
-            <span className="text-3xl font-semibold font-mono text-black leading-none">{mockAchievements.stats.earned}</span>
-            <span className="text-[11px] font-medium text-neutral-400 uppercase tracking-widest">MP Earned</span>
-          </div>
-        </DashboardCard>
-        <DashboardCard className="p-6">
-          <div className="flex flex-col items-center justify-center text-center space-y-2">
-            <span className="text-3xl font-semibold font-mono text-black leading-none">{mockAchievements.stats.streak}</span>
-            <span className="text-[11px] font-medium text-neutral-400 uppercase tracking-widest">Day Streak</span>
-          </div>
-        </DashboardCard>
+        {/* MP Balance - Green */}
+        <Card className="relative overflow-hidden border-none bg-gradient-to-br from-green-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-green-100/50 blur-2xl transition-all group-hover:bg-green-200/50" />
+          <CardContent className="p-6 relative z-10">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-green-900/60">MP Balance</p>
+                <p className="mt-2 text-3xl font-semibold font-mono text-green-900">{mockAchievements.stats.balance}</p>
+              </div>
+              <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                <DollarSign className="h-6 w-6 text-green-600" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        
+        {/* Unlocked - Amber */}
+        <Card className="relative overflow-hidden border-none bg-gradient-to-br from-amber-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-amber-100/50 blur-2xl transition-all group-hover:bg-amber-200/50" />
+          <CardContent className="p-6 relative z-10">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-amber-900/60">Unlocked</p>
+                <p className="mt-2 text-3xl font-semibold font-mono text-amber-900">{mockAchievements.stats.unlocked}/{mockAchievements.stats.total}</p>
+              </div>
+              <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                <Trophy className="h-6 w-6 text-amber-600" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        
+        {/* MP Earned - Blue */}
+        <Card className="relative overflow-hidden border-none bg-gradient-to-br from-blue-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-blue-100/50 blur-2xl transition-all group-hover:bg-blue-200/50" />
+          <CardContent className="p-6 relative z-10">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-blue-900/60">MP Earned</p>
+                <p className="mt-2 text-3xl font-semibold font-mono text-blue-900">{mockAchievements.stats.earned}</p>
+              </div>
+              <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                <Gift className="h-6 w-6 text-blue-600" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        
+        {/* Day Streak - Purple */}
+        <Card className="relative overflow-hidden border-none bg-gradient-to-br from-purple-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-purple-100/50 blur-2xl transition-all group-hover:bg-purple-200/50" />
+          <CardContent className="p-6 relative z-10">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-purple-900/60">Day Streak</p>
+                <p className="mt-2 text-3xl font-semibold font-mono text-purple-900">{mockAchievements.stats.streak}</p>
+              </div>
+              <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                <Zap className="h-6 w-6 text-purple-600" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Daily Bonus */}

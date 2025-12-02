@@ -96,81 +96,96 @@ export default function WalletPage() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex items-center justify-between"
+        className="flex items-center justify-between mb-8"
       >
         <div>
-          <h1 className="text-4xl font-semibold tracking-tight bg-gradient-to-r from-gray-900 to-gray-500 bg-clip-text text-transparent">
-            Wallet
-          </h1>
-          <p className="mt-2 text-lg text-gray-500">Manage your balance and transactions</p>
+          <h1 className="text-3xl font-semibold text-neutral-900">Wallet</h1>
+          <p className="text-sm text-neutral-500 mt-0.5">Manage your balance and transactions</p>
         </div>
       </motion.div>
+
+      {/* Visual Separator - Balance Overview */}
+      <div className="flex items-center gap-4 mb-10">
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent"></div>
+        <h2 className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Balance Overview</h2>
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent"></div>
+      </div>
 
       {/* Balance Cards */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="grid gap-6 md:grid-cols-3"
+        className="grid gap-6 md:grid-cols-3 mb-10"
       >
-        <Card className="relative overflow-hidden border-gray-100 bg-gradient-to-br from-blue-50 via-white to-white shadow-lg transition-all hover:shadow-xl hover:-translate-y-1">
-          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-blue-100/50 blur-2xl" />
-          <CardContent className="p-6">
+        {/* Current Balance - Blue */}
+        <Card className="relative overflow-hidden border-none bg-gradient-to-br from-blue-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-blue-100/50 blur-2xl transition-all group-hover:bg-blue-200/50" />
+          <CardContent className="p-6 relative z-10">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-500">Current Balance</p>
-                <p className="mt-2 text-2xl font-semibold font-mono text-gray-900">{mockUser.wallet.balance.toFixed(2)} <span className="text-lg font-sans font-normal text-gray-400">MP</span></p>
+                <p className="text-sm font-medium text-blue-900/60">Current Balance</p>
+                <p className="mt-2 text-3xl font-semibold font-mono text-blue-900">{mockUser.wallet.balance.toFixed(2)} <span className="text-lg font-sans font-normal text-blue-500/60">MP</span></p>
               </div>
-              <div className="rounded-2xl bg-blue-50 p-4 shadow-inner">
-                <Wallet className="h-8 w-8 text-blue-600" />
+              <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                <Wallet className="h-6 w-6 text-blue-600" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="relative overflow-hidden border-gray-100 bg-gradient-to-br from-green-50 via-white to-white shadow-lg transition-all hover:shadow-xl hover:-translate-y-1">
-          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-green-100/50 blur-2xl" />
-          <CardContent className="p-6">
+        {/* Total Winnings - Green */}
+        <Card className="relative overflow-hidden border-none bg-gradient-to-br from-green-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-green-100/50 blur-2xl transition-all group-hover:bg-green-200/50" />
+          <CardContent className="p-6 relative z-10">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-500">Total Winnings</p>
-                <p className="mt-2 text-2xl font-semibold font-mono text-green-600">+{mockUser.wallet.total_winnings.toFixed(2)} <span className="text-sm font-sans font-normal text-gray-400">MP</span></p>
+                <p className="text-sm font-medium text-green-900/60">Total Winnings</p>
+                <p className="mt-2 text-3xl font-semibold font-mono text-green-900">+{mockUser.wallet.total_winnings.toFixed(2)} <span className="text-lg font-sans font-normal text-green-500/60">MP</span></p>
               </div>
-              <div className="rounded-2xl bg-green-50 p-4 shadow-inner">
-                <TrendingUp className="h-7 w-7 text-green-600" />
+              <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                <TrendingUp className="h-6 w-6 text-green-600" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="relative overflow-hidden border-gray-100 bg-gradient-to-br from-red-50 via-white to-white shadow-lg transition-all hover:shadow-xl hover:-translate-y-1">
-          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-red-100/50 blur-2xl" />
-          <CardContent className="p-6">
+        {/* Total Losses - Red */}
+        <Card className="relative overflow-hidden border-none bg-gradient-to-br from-red-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-red-100/50 blur-2xl transition-all group-hover:bg-red-200/50" />
+          <CardContent className="p-6 relative z-10">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-500">Total Losses</p>
-                <p className="mt-2 text-2xl font-semibold font-mono text-red-600">-{mockUser.wallet.total_losses.toFixed(2)} <span className="text-sm font-sans font-normal text-gray-400">MP</span></p>
+                <p className="text-sm font-medium text-red-900/60">Total Losses</p>
+                <p className="mt-2 text-3xl font-semibold font-mono text-red-900">-{mockUser.wallet.total_losses.toFixed(2)} <span className="text-lg font-sans font-normal text-red-500/60">MP</span></p>
               </div>
-              <div className="rounded-2xl bg-red-50 p-4 shadow-inner">
-                <TrendingDown className="h-7 w-7 text-red-600" />
+              <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                <TrendingDown className="h-6 w-6 text-red-600" />
               </div>
             </div>
           </CardContent>
         </Card>
       </motion.div>
 
-      {/* Action Buttons - Slimmer & Sleeker */}
+      {/* Visual Separator - Quick Actions */}
+      <div className="flex items-center gap-4 mb-10">
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent"></div>
+        <h2 className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Quick Actions</h2>
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent"></div>
+      </div>
+
+      {/* Action Buttons */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="flex gap-4"
+        className="flex gap-4 mb-10"
       >
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={() => setIsDepositModalOpen(true)}
-          className="group flex h-11 cursor-pointer flex-1 items-center justify-center gap-2 rounded-full bg-gray-900 px-6 text-white shadow-md transition-all hover:bg-black hover:shadow-lg"
+          className="group flex h-11 cursor-pointer flex-1 items-center justify-center gap-2 rounded-xl bg-neutral-900 px-6 text-white shadow-md transition-all hover:bg-neutral-800 hover:shadow-lg"
         >
           <ArrowDownLeft className="h-4 w-4" />
           <span className="font-semibold text-sm">Deposit Funds</span>
@@ -180,12 +195,19 @@ export default function WalletPage() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={() => setIsWithdrawModalOpen(true)}
-          className="group flex h-11 cursor-pointer flex-1 items-center justify-center gap-2 rounded-full bg-white px-6 text-gray-900 shadow-sm border border-gray-200 transition-all hover:shadow-md hover:border-gray-300"
+          className="group flex h-11 cursor-pointer flex-1 items-center justify-center gap-2 rounded-xl bg-white px-6 text-neutral-900 shadow-sm border border-neutral-200 transition-all hover:shadow-md hover:border-neutral-300"
         >
           <ArrowUpRight className="h-4 w-4" />
           <span className="font-semibold text-sm">Withdraw Funds</span>
         </motion.button>
       </motion.div>
+
+      {/* Visual Separator - Transaction History */}
+      <div className="flex items-center gap-4 mb-10">
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent"></div>
+        <h2 className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Transaction History</h2>
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent"></div>
+      </div>
 
       {/* Recent Transactions - Sleek List View */}
       <motion.div

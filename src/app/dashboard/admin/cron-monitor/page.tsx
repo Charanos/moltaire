@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { ArrowLeft, RefreshCw, Play, Activity, CheckCircle, XCircle, Clock, TrendingUp, Code, Info } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { DashboardCard } from "@/components/dashboard/DashboardCard"
+import { Card, CardContent } from "@/components/ui/card"
 
 // Mock Data
 const mockCronJobs = [
@@ -144,47 +145,71 @@ export default function CronMonitorPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05 }}
-          className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10"
+          className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10"
         >
-          <DashboardCard className="p-5">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-neutral-500">Total Runs (24h)</span>
-              <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
-                <Activity className="w-4 h-4 text-blue-600" />
+          {/* Total Runs Card */}
+          <Card className="relative overflow-hidden border-none bg-gradient-to-br from-blue-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+            <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-blue-100/50 blur-2xl transition-all group-hover:bg-blue-200/50" />
+            <CardContent className="p-6 relative z-10">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-blue-900/60">Total Runs (24h)</p>
+                  <p className="mt-2 text-3xl font-semibold font-mono text-blue-900">{totalRuns}</p>
+                </div>
+                <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                  <Activity className="h-6 w-6 text-blue-600" />
+                </div>
               </div>
-            </div>
-            <p className="text-2xl font-semibold text-neutral-900 font-mono">{totalRuns}</p>
-          </DashboardCard>
+            </CardContent>
+          </Card>
 
-          <DashboardCard className="p-5">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-neutral-500">Successful</span>
-              <div className="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center">
-                <CheckCircle className="w-4 h-4 text-green-600" />
+          {/* Successful Runs Card */}
+          <Card className="relative overflow-hidden border-none bg-gradient-to-br from-green-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+            <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-green-100/50 blur-2xl transition-all group-hover:bg-green-200/50" />
+            <CardContent className="p-6 relative z-10">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-green-900/60">Successful</p>
+                  <p className="mt-2 text-3xl font-semibold font-mono text-green-900">{successfulRuns}</p>
+                </div>
+                <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                  <CheckCircle className="h-6 w-6 text-green-600" />
+                </div>
               </div>
-            </div>
-            <p className="text-2xl font-semibold text-neutral-900 font-mono">{successfulRuns}</p>
-          </DashboardCard>
+            </CardContent>
+          </Card>
 
-          <DashboardCard className="p-5">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-neutral-500">Failed</span>
-              <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center">
-                <XCircle className="w-4 h-4 text-red-600" />
+          {/* Failed Runs Card */}
+          <Card className="relative overflow-hidden border-none bg-gradient-to-br from-red-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+            <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-red-100/50 blur-2xl transition-all group-hover:bg-red-200/50" />
+            <CardContent className="p-6 relative z-10">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-red-900/60">Failed</p>
+                  <p className="mt-2 text-3xl font-semibold font-mono text-red-900">{failedRuns}</p>
+                </div>
+                <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                  <XCircle className="h-6 w-6 text-red-600" />
+                </div>
               </div>
-            </div>
-            <p className="text-2xl font-semibold text-neutral-900 font-mono">{failedRuns}</p>
-          </DashboardCard>
+            </CardContent>
+          </Card>
 
-          <DashboardCard className="p-5">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-neutral-500">Avg Duration</span>
-              <div className="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center">
-                <Clock className="w-4 h-4 text-purple-600" />
+          {/* Avg Duration Card */}
+          <Card className="relative overflow-hidden border-none bg-gradient-to-br from-purple-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+            <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-purple-100/50 blur-2xl transition-all group-hover:bg-purple-200/50" />
+            <CardContent className="p-6 relative z-10">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-purple-900/60">Avg Duration</p>
+                  <p className="mt-2 text-3xl font-semibold font-mono text-purple-900">{avgDuration}</p>
+                </div>
+                <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                  <Clock className="h-6 w-6 text-purple-600" />
+                </div>
               </div>
-            </div>
-            <p className="text-2xl font-semibold text-neutral-900 font-mono">{avgDuration}</p>
-          </DashboardCard>
+            </CardContent>
+          </Card>
         </motion.div>
 
         {/* Visual Separator - Current Jobs */}

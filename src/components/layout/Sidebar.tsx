@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { Home, Wallet, Users, User, Bell, LogOut, Shield, ChevronLeft, ChevronRight } from 'lucide-react'
 import { signOut, useSession } from 'next-auth/react'
 import { cn } from "@/lib/utils"
+import { mockNotifications } from "@/lib/mockData"
 
 const navItems = [
   { title: "Home", url: "/dashboard", icon: Home },
@@ -65,6 +66,9 @@ export function Sidebar({ collapsed = false, onToggle = () => {}, user }: Sideba
         <ul className="space-y-1.5 flex-1">
           {navItems.map((item) => {
             const isActive = pathname === item.url
+            const isNotifications = item.title === "Notifications"
+            const unreadCount = isNotifications ? mockNotifications.filter(n => !n.is_read).length : 0
+
             return (
               <li key={item.url}>
                 <Link
@@ -78,24 +82,40 @@ export function Sidebar({ collapsed = false, onToggle = () => {}, user }: Sideba
                   )}
                   title={collapsed ? item.title : undefined}
                 >
-                  <item.icon className={cn(
-                    "h-5 w-5 transition-colors duration-200",
-                    isActive ? 'text-white' : 'text-gray-400 group-hover:text-gray-600'
-                  )} />
+                  <div className="relative">
+                    <item.icon className={cn(
+                      "h-5 w-5 transition-colors duration-200",
+                      isActive ? 'text-white' : 'text-gray-400 group-hover:text-gray-600'
+                    )} />
+                    {isNotifications && unreadCount > 0 && (
+                      <span className={cn(
+                        "absolute -top-1 -right-1 flex h-2.5 w-2.5 items-center justify-center rounded-full bg-red-500 ring-2 ring-white",
+                        collapsed && "right-0"
+                      )} />
+                    )}
+                  </div>
                   
                   {!collapsed && (
-                    <span className={cn(
-                      "ml-3 text-sm font-semibold tracking-wide transition-opacity duration-200",
-                      isActive ? "text-white" : "text-gray-600 group-hover:text-gray-900"
-                    )}>
-                      {item.title}
-                    </span>
+                    <div className="flex flex-1 items-center justify-between ml-3">
+                      <span className={cn(
+                        "text-sm font-semibold tracking-wide transition-opacity duration-200",
+                        isActive ? "text-white" : "text-gray-600 group-hover:text-gray-900"
+                      )}>
+                        {item.title}
+                      </span>
+                      {isNotifications && unreadCount > 0 && (
+                        <span className="flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+                          {unreadCount}
+                        </span>
+                      )}
+                    </div>
                   )}
                   
                   {/* Tooltip for collapsed mode */}
                   {collapsed && (
                     <div className="absolute left-full ml-3 px-2 py-1 bg-gray-900 text-white text-xs font-medium rounded-md opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap transition-opacity z-50 shadow-lg">
                       {item.title}
+                      {isNotifications && unreadCount > 0 && ` (${unreadCount})`}
                     </div>
                   )}
                 </Link>

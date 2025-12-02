@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { ArrowLeft, Search, Plus, Edit, Eye, Flag, Repeat, Users, DollarSign, Calendar, Filter, TrendingUp, AlertCircle } from "lucide-react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { Card, CardContent } from "@/components/ui/card"
 import { DashboardCard } from "@/components/dashboard/DashboardCard"
 
 interface Market {
@@ -137,47 +138,71 @@ export default function MarketManagerPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05 }}
-            className="grid grid-cols-1 md:grid-cols-4 gap-4"
+            className="grid grid-cols-1 md:grid-cols-4 gap-6"
           >
-            <DashboardCard className="p-5">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-neutral-500">Total Markets</span>
-                <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
-                  <TrendingUp className="w-4 h-4 text-blue-600" />
+            {/* Total Markets - Blue */}
+            <Card className="relative overflow-hidden border-none bg-gradient-to-br from-blue-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+              <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-blue-100/50 blur-2xl transition-all group-hover:bg-blue-200/50" />
+              <CardContent className="p-6 relative z-10">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-blue-900/60">Total Markets</p>
+                    <p className="mt-2 text-3xl font-semibold font-mono text-blue-900">{totalMarkets}</p>
+                  </div>
+                  <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                    <TrendingUp className="h-6 w-6 text-blue-600" />
+                  </div>
                 </div>
-              </div>
-              <p className="text-2xl font-semibold text-neutral-900 font-mono">{totalMarkets}</p>
-            </DashboardCard>
+              </CardContent>
+            </Card>
 
-            <DashboardCard className="p-5">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-neutral-500">Active Markets</span>
-                <div className="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center">
-                  <AlertCircle className="w-4 h-4 text-green-600" />
+            {/* Active Markets - Green */}
+            <Card className="relative overflow-hidden border-none bg-gradient-to-br from-green-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+              <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-green-100/50 blur-2xl transition-all group-hover:bg-green-200/50" />
+              <CardContent className="p-6 relative z-10">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-green-900/60">Active Markets</p>
+                    <p className="mt-2 text-3xl font-semibold font-mono text-green-900">{activeMarkets}</p>
+                  </div>
+                  <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                    <AlertCircle className="h-6 w-6 text-green-600" />
+                  </div>
                 </div>
-              </div>
-              <p className="text-2xl font-semibold text-neutral-900 font-mono">{activeMarkets}</p>
-            </DashboardCard>
+              </CardContent>
+            </Card>
 
-            <DashboardCard className="p-5">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-neutral-500">Total Pool</span>
-                <div className="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center">
-                  <DollarSign className="w-4 h-4 text-purple-600" />
+            {/* Total Pool - Purple */}
+            <Card className="relative overflow-hidden border-none bg-gradient-to-br from-purple-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+              <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-purple-100/50 blur-2xl transition-all group-hover:bg-purple-200/50" />
+              <CardContent className="p-6 relative z-10">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-purple-900/60">Total Pool</p>
+                    <p className="mt-2 text-3xl font-semibold font-mono text-purple-900">{totalPool} MP</p>
+                  </div>
+                  <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                    <DollarSign className="h-6 w-6 text-purple-600" />
+                  </div>
                 </div>
-              </div>
-              <p className="text-2xl font-semibold text-neutral-900 font-mono">{totalPool} MP</p>
-            </DashboardCard>
+              </CardContent>
+            </Card>
 
-            <DashboardCard className="p-5">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-neutral-500">Total Participants</span>
-                <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center">
-                  <Users className="w-4 h-4 text-orange-600" />
+            {/* Total Participants - Orange */}
+            <Card className="relative overflow-hidden border-none bg-gradient-to-br from-orange-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+              <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-orange-100/50 blur-2xl transition-all group-hover:bg-orange-200/50" />
+              <CardContent className="p-6 relative z-10">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-orange-900/60">Total Participants</p>
+                    <p className="mt-2 text-3xl font-semibold font-mono text-orange-900">{totalParticipants}</p>
+                  </div>
+                  <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                    <Users className="h-6 w-6 text-orange-600" />
+                  </div>
                 </div>
-              </div>
-              <p className="text-2xl font-semibold text-neutral-900 font-mono">{totalParticipants}</p>
-            </DashboardCard>
+              </CardContent>
+            </Card>
           </motion.div>
         </div>
 

@@ -106,52 +106,76 @@ export default function AdminPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-10"
+        className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-10"
       >
-        <DashboardCard className="p-5">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-neutral-500">Active Markets</span>
-            <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
-              <TrendingUp className="w-4 h-4 text-blue-600" />
+        {/* Active Markets - Blue */}
+        <Card className="relative overflow-hidden border-none bg-gradient-to-br from-blue-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-blue-100/50 blur-2xl transition-all group-hover:bg-blue-200/50" />
+          <CardContent className="p-6 relative z-10">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-blue-900/60">Active Markets</p>
+                <p className="mt-2 text-3xl font-semibold font-mono text-blue-900">{mockAdminStats.activeMarkets}</p>
+              </div>
+              <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                <TrendingUp className="h-6 w-6 text-blue-600" />
+              </div>
             </div>
-          </div>
-          <p className="text-2xl font-semibold text-neutral-900 font-mono">{mockAdminStats.activeMarkets}</p>
-        </DashboardCard>
+          </CardContent>
+        </Card>
 
-        <DashboardCard className="p-5">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-neutral-500">Total Users</span>
-            <div className="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center">
-              <Users className="w-4 h-4 text-purple-600" />
+        {/* Total Users - Purple */}
+        <Card className="relative overflow-hidden border-none bg-gradient-to-br from-purple-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-purple-100/50 blur-2xl transition-all group-hover:bg-purple-200/50" />
+          <CardContent className="p-6 relative z-10">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-purple-900/60">Total Users</p>
+                <p className="mt-2 text-3xl font-semibold font-mono text-purple-900">{mockAdminStats.totalUsers}</p>
+              </div>
+              <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                <Users className="h-6 w-6 text-purple-600" />
+              </div>
             </div>
-          </div>
-          <p className="text-2xl font-semibold text-neutral-900 font-mono">{mockAdminStats.totalUsers}</p>
-        </DashboardCard>
+          </CardContent>
+        </Card>
 
-        <DashboardCard className="p-5">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-neutral-500">Total Volume</span>
-            <div className="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center">
-              <DollarSign className="w-4 h-4 text-green-600" />
+        {/* Total Volume - Green */}
+        <Card className="relative overflow-hidden border-none bg-gradient-to-br from-green-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-green-100/50 blur-2xl transition-all group-hover:bg-green-200/50" />
+          <CardContent className="p-6 relative z-10">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-green-900/60">Total Volume</p>
+                <p className="mt-2 text-3xl font-semibold font-mono text-green-900">${mockAdminStats.totalVolume.toLocaleString()}</p>
+              </div>
+              <div className="rounded-xl bg-white/80 p-3 shadow-sm backdrop-blur-sm">
+                <DollarSign className="h-6 w-6 text-green-600" />
+              </div>
             </div>
-          </div>
-          <p className="text-2xl font-semibold text-neutral-900 font-mono">${mockAdminStats.totalVolume.toLocaleString()}</p>
-        </DashboardCard>
+          </CardContent>
+        </Card>
 
-        <DashboardCard className="p-5">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-neutral-500">Flagged Markets</span>
-            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${mockAdminStats.flaggedMarkets > 0 ? 'bg-red-50' : 'bg-neutral-50'}`}>
-              <Shield className={`w-4 h-4 ${mockAdminStats.flaggedMarkets > 0 ? 'text-red-600' : 'text-neutral-400'}`} />
+        {/* Flagged Markets - Red/Orange */}
+        <Card className="relative overflow-hidden border-none bg-gradient-to-br from-red-50 via-white to-white shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all cursor-pointer group">
+          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-red-100/50 blur-2xl transition-all group-hover:bg-red-200/50" />
+          <CardContent className="p-6 relative z-10">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-red-900/60">Flagged Markets</p>
+                <div className="flex items-baseline gap-2">
+                  <p className="mt-2 text-3xl font-semibold font-mono text-red-900">{mockAdminStats.flaggedMarkets}</p>
+                  {mockAdminStats.flaggedMarkets === 0 && (
+                    <span className="text-xs text-red-500/60 font-medium">All clear</span>
+                  )}
+                </div>
+              </div>
+              <div className={`rounded-xl p-3 shadow-sm backdrop-blur-sm ${mockAdminStats.flaggedMarkets > 0 ? 'bg-white/80' : 'bg-white/60'}`}>
+                <Shield className={`h-6 w-6 ${mockAdminStats.flaggedMarkets > 0 ? 'text-red-600' : 'text-red-400'}`} />
+              </div>
             </div>
-          </div>
-          <div className="flex items-baseline gap-2">
-            <p className="text-2xl font-semibold text-neutral-900 font-mono">{mockAdminStats.flaggedMarkets}</p>
-            {mockAdminStats.flaggedMarkets === 0 && (
-              <span className="text-xs text-neutral-400 font-medium">All clear</span>
-            )}
-          </div>
-        </DashboardCard>
+          </CardContent>
+        </Card>
       </motion.div>
 
       {/* Visual Separator - Quick Actions */}
